@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 class Solution {
+
     public int[] solution(int[] numbers) {
         int[] answer = {};
         ArrayList<Integer> a = new ArrayList<Integer>();
