@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Arrays;
 
 class Solution {
     public int[] solution(int[] numbers) {
@@ -15,7 +14,9 @@ class Solution {
                 }
             }  
         } 
+        
         Collections.sort(a);
+        System.out.println(a);
         
         answer = a.stream().mapToInt(Integer::intValue).toArray();
         return answer;
