@@ -1,0 +1,28 @@
+class Solution {
+    public int solution(int[][] sizes) {
+        
+        int answer = 0; int width = 0; int height = 0;
+        
+        //눕혀 수납할 명함들 정렬하기
+        for(int i=0; i<sizes.length; i++){
+            if(sizes[i][0]<sizes[i][1]){
+                int n=sizes[i][0];
+                sizes[i][0] = sizes[i][1];
+                sizes[i][1] = n;
+            }
+        }
+        
+        //가장 큰 숫자 찾기
+        for(int j=0; j<sizes.length; j++){
+            if(sizes[j][0]>width){
+                width = sizes[j][0];
+            }
+            if(sizes[j][1]>height){
+                height = sizes[j][1];
+            }
+        }
+        
+        answer = width*height;
+        return answer;
+    }
+}
