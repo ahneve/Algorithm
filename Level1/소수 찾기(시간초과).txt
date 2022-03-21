@@ -1,0 +1,20 @@
+class Solution {
+    public int solution(int n) {
+        int answer = 0;
+        int l = 0;
+                
+        for(int i=3; i<=n; i++){
+            loop:
+            for(int j=2; j<=i/2; j++){
+               //소수가 아니면 바로 빠르게 빠져나가서 다음 i로 넘어가기
+               if(i%j==0){
+                   l++;
+                   break loop;                
+                } 
+            } 
+        }
+        
+        answer = n-l-1;
+        return answer;
+    }
+}
