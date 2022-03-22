@@ -1,0 +1,19 @@
+class Solution {
+    public long solution(int price, int money, int count) {
+        long answer = 0;
+
+        long nec = 0;
+        
+        for(long i=1; i<=count; i++){
+            nec = nec + price*i;
+        }
+        if(nec>money){
+            answer = nec-money;
+        }else {
+            answer = 0;
+        }
+       
+        
+        return answer;
+    }
+}
