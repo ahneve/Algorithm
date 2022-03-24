@@ -1,0 +1,27 @@
+class Solution {
+    public String solution(String s, int n) {
+        String answer = "";
+        char[] temp = s.toCharArray();
+        
+        for(int i=0; i<temp.length; i++){
+            if(temp[i] == ' ') {
+                answer += " ";
+            } else if(temp[i] <= 'z' && temp[i]+n > 'z'){
+                //넘어갔을 때
+                answer += (char)('a'+(temp[i]+n-'z'-1));
+            } else if(temp[i] <= 'Z' && temp[i]+n > 'Z'){
+                //넘어갔을 때
+                answer += (char)('A'+(temp[i]+n-'Z'-1));
+            } else if(temp[i] <= 'z' && temp[i]+n > 'a'){
+                //정상
+                answer += (char)(temp[i]+n);
+            } else if(temp[i] <= 'Z' && temp[i]+n >'A'){
+                //정상
+                answer += (char)(temp[i]+n);
+            }
+                      
+        }
+              
+        return answer;
+    }
+}
