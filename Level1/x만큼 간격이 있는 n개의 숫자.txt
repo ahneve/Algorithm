@@ -1,0 +1,28 @@
+import java.util.ArrayList;
+
+class Solution {
+    public long[] solution(int x, int n) {
+        long[] answer = {};
+        long xx = Long.valueOf(x);
+        long nn = Long.valueOf(n);
+        ArrayList<Long> a = new ArrayList<Long> ();
+        
+        if(x*n<0){
+            for(long i=xx; i>=xx*nn; i=i+xx) {
+                    a.add(Long.valueOf(i));
+                }         
+        } else if(x==0){
+            for(long i=0; i<n; i++) {
+                    a.add(Long.valueOf(0));
+                } 
+        } else {
+            for(long i=xx; i<=xx*nn; i=i+xx) {
+                    a.add(Long.valueOf(i));
+            }
+        }
+        
+        
+        answer = a.stream().mapToLong(Long::longValue).toArray();
+        return answer;
+    }
+}
