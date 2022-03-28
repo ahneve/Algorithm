@@ -1,0 +1,68 @@
+class Solution {
+    public String solution(int[] numbers, String hand) {
+        String answer = "";
+        //시작 위치
+        int[] left_hand = {0,3}; 
+        int[] right_hand = {2,3};
+        //키패드
+        int[] left_nums = {1,4,7,11};
+        int[] right_nums = {3,6,9,12};
+        int[] mid_nums = {2,5,8,0};
+        
+        for(int i=0; i<numbers.length; i++){
+            int temp = numbers[i];
+            loop:
+            for(int j=0; j<4; j++){
+                if(temp==left_nums[j]){
+                    answer = answer+"L";
+                    left_hand[0] = 0;
+                    left_hand[1] = j;
+                    break loop;
+                } else if(temp==right_nums[j]) {
+                    answer = answer+"R";
+                    right_hand[0] = 2;
+                    right_hand[1] = j;
+                    break loop;
+                } else if(temp==mid_nums[j]){
+                    //오른손 거리
+                    int rr=0;
+                    if(right_hand[0]==2){
+                        rr++;
+                    } 
+                    rr = rr + (int)Math.abs(right_hand[1]-j);
+                    
+                    //왼손 거리
+                    int ll=0;
+                    if(left_hand[0]==0){
+                        ll++;
+                    } 
+                    ll = ll + (int)Math.abs(left_hand[1]-j);
+                    
+                    if(rr<ll) {
+                        answer += "R";
+                        right_hand[0] = 1;
+                        right_hand[1] = j;
+                    } else if(rr>ll) {
+                        answer += "L";
+                        left_hand [0] = 1;
+                        left_hand [1] = j;
+                    } else if(rr==ll){
+                        if (hand.equals("right")){
+                            answer +="R";
+                            right_hand[0] = 1;
+                            right_hand[1] = j;
+                        } else if(hand.equals("left")){
+                            answer += "L";
+                            left_hand [0] = 1;
+                            left_hand [1] = j;
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        
+        return answer;
+    }
+}
