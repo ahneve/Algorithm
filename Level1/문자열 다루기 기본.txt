@@ -1,0 +1,26 @@
+class Solution {
+    public boolean solution(String s) {
+        boolean answer = true;
+        boolean con = false;
+        
+        loop:
+        for(int i=0; i<s.length(); i++){
+            if(Character.isDigit(s.charAt(i))==false){
+                answer = false;
+                con = false;
+                break loop;
+            } else {
+                con = true;
+            }    
+        }
+        
+        if(s.length()==4 && con==true){
+            answer = true;
+        } else if(s.length()==6 && con==true){
+            answer = true;
+        } else {
+            answer = false;
+        }
+        return answer;
+    }
+}
