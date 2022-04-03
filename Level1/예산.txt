@@ -1,0 +1,29 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
+class Solution {
+    public int solution(int[] d, int budget) {
+        int answer = 0;
+        int sum = 0;
+        ArrayList<Integer> num = new ArrayList<Integer> ();
+        
+        for(int i=0; i<d.length; i++){
+            num.add(d[i]);
+        }
+        
+        Collections.sort(num);
+        
+        loop:
+        for(int i=0; i<num.size(); i++){
+            sum = sum+num.get(i);
+            if (sum > budget) {
+                break loop;
+            } else if (sum <= budget) {
+                answer++;
+            }
+        }
+        
+        System.out.println(num);
+        return answer;
+    }
+}
