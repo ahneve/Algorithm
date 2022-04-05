@@ -1,0 +1,28 @@
+class Solution {
+    public int[] solution(int[] lottos, int[] win_nums) {
+        int[] answer = {0,0};           int correct = 0;
+        int zero_count = 0;             int max_rank = 0; int min_rank = 0;
+        
+        for(int i=0; i<win_nums.length; i++){
+            
+            for(int j=0; j<lottos.length; j++){
+                if(lottos[j] == win_nums[i]){
+                    correct++;
+                }
+            }
+            
+            if(lottos[i]==0){
+                zero_count++;
+            }
+        }
+        
+        int max = correct+zero_count;   int min = correct;
+             
+        if(max==0) { answer[0]=6;} else {answer[0]=7-max;} 
+        if(min==0) { answer[1]=6;} else {answer[1]=7-min;}
+
+        
+        return answer;
+    }
+    
+}
