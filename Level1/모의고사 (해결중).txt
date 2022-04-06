@@ -1,0 +1,57 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(int[] answers) {
+        int[] answer = new int[3];
+        int[] result = new int[3];
+        //int result_1 = 0;     int result_2 = 0;   int result_3 = 0;
+        //1번 수포자는 5개씩 반복
+        //2번 수포자는 8개씩 반복
+        //3번 수포자는 10개씩 반복
+        //배열의 위치인 i값을 통해 찍은 숫자 예측해야함
+        for(int i=0; i<answers.length; i++){
+            int count_1 = 0;    int count_2 = 0;    int count_3 = 0;
+            int temp = i+1; 
+            //1번 수포자 식: temp%5
+            //2번 수포자 식 (1): temp%2==1 일 때(홀수일 때) 2
+            //2번 수포자 식 (2): temp%2!=1 일 때(짝수일 때) (temp%8)/2
+            //3번 수포자 식: ((temp%10)+1)/2
+            if(answers[i]==temp%5){ count_1++; }
+            if((temp%2==1) && (answers[i]==2)) { count_2++; }
+            if((temp%2!=1) && (answers[i]==(temp%8)/2)) { count_2++; }
+            if(((temp%10)+1)/2==answers[i]) { count_3 ++; }
+            
+            if(count_1>0) { result[0]++; }
+            if(count_2>0) { result[1]++; }
+            if(count_3>0) { result[2]++; }
+        }
+                
+        
+        System.out.println(result[0]);
+        System.out.println(result[1]);
+        System.out.println(result[2]);
+        
+        ArrayList<Integer> num = new ArrayList<Integer> ();
+        
+        int max = result[0];
+        int index = 0;
+        
+        for(int i=0; i<result.length; i++){
+            if(result[i]>=max) {
+                max = result[i];
+                } 
+            } 
+        
+        for(int i=0; i<result.length; i++){
+            if(result[i]==max){
+                System.out.println(result[i]);
+                num.add(i+1);
+            }
+        }
+        
+        int[] done = num.stream().mapToInt(Integer::intValue).toArray();
+        Arrays.sort(done);
+        
+        return done;
+    }
+}
