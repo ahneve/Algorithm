@@ -1,0 +1,19 @@
+class Solution {
+    public int solution(int n) {
+    
+    int count = 0;
+    int[] nums = new int[n+1];
+ 
+    //에라토스테네스의 체
+    for (int i=2; i<nums.length; i++) {
+        if (nums[i] == 0) {
+            count++;
+            for (int j = i; j<nums.length; j+=i) {
+                if (nums[j] != 1) {
+                    nums[j] = 1; }
+            }
+        }
+    }
+    return count;
+    }
+}
