@@ -1,0 +1,26 @@
+
+import pandas as pd
+
+def jaccard_similarity(list1, list2):
+    s1 = set(list1)
+    s2 = set(list2)
+    return float(len(s1.intersection(s2)) / len(s1.union(s2)))
+
+data = pd.read_csv('/Users/ahneve/dataset3.csv')
+data.head()
+
+input = ["감자", "아몬드", "당근", "카레", "통깨", "토마토"]
+result = []
+for index in range(0, data['id'].count() - 1):
+    list = data['food'][index].split(" ")
+    a = []
+    a.append(data["id"][index])
+    a.append(data["dish"][index])
+    a.append(data['food'][index])
+    a.append(jaccard_similarity(input, list))
+    result.append(a)
+
+result.sort(key=lambda x: -x[3])
+
+for i in range(0, 20):
+    print(result[i])
