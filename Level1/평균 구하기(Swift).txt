@@ -1,0 +1,7 @@
+func solution(_ arr:[Int]) -> Double {
+    var result = 0
+    for i in arr {
+        result = result + i
+    }
+    return Double(result)/Double(arr.count)
+}
