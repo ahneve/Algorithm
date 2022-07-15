@@ -1,0 +1,15 @@
+func solution(_ arr:[Int]) -> [Int] {
+
+    var resArr = arr
+    var n :Int? = resArr.min()
+    
+    if let idx = resArr.firstIndex(where: {$0 == n}) {
+	    resArr.remove(at: idx)
+    }
+    
+    if resArr.count == 0 {
+        resArr.append(-1)
+    }
+    
+    return resArr
+}
