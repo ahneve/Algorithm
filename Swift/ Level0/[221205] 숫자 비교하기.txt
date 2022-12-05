@@ -1,0 +1,13 @@
+import Foundation
+
+    
+func solution(_ num1:Int, _ num2:Int) -> Int {
+
+    var i : Int = 0
+    if(num1==num2){
+        i = 1
+    } else {
+        i = -1
+    }
+    return i
+}
