@@ -1,0 +1,7 @@
+import Foundation
+
+func solution(_ my_string:String, _ n:Int) -> String {
+    var resultArray = my_string.map{String(repeating: $0, count: n)}
+    var resultString = resultArray.reduce(""){$0+$1}
+    return resultString
+}
