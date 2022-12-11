@@ -1,0 +1,13 @@
+import Foundation
+
+func solution(_ sides:[Int]) -> Int {
+    var sortedArray = sides.sorted()
+    var result : Int = 0
+    if(sortedArray[0]+sortedArray[1] > sortedArray[2]){
+        result = 1
+    } else {
+        result = 2
+    }
+    
+    return result
+}
