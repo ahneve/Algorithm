@@ -1,0 +1,25 @@
+import Foundation
+
+func solution(_ rsp:String) -> String {
+    var resultArray = rsp.map{String($0)}
+    var resultString : String = ""
+    for i in resultArray {
+        if(i=="0"){
+            resultString = resultString+"5"
+        } else if(i=="5"){
+            resultString = resultString+"2"
+        } else if(i=="2"){
+            resultString = resultString+"0"
+        }
+    }
+    return resultString
+}
+
+#다른 풀이
+
+import Foundation
+
+func solution(_ rsp:String) -> String {
+    
+    return rsp.map{$0 == "0" ? "5" : $0 == "2" ? "0" : "2"}.joined()
+}
