@@ -1,0 +1,6 @@
+import Foundation
+
+func solution(_ n:Int) -> [Int] {
+    var resultArray = Array<Int>(1...n)
+    return resultArray.filter{n % $0 == 0}.sorted(by: <)
+}
