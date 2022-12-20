@@ -1,0 +1,10 @@
+import Foundation
+
+func solution(_ n:Int) -> Int {
+    var resultArray = Array<Int>(1...n)
+    if(resultArray.filter{$0*$0==n}.isEmpty) {
+        return 2
+    } else {
+        return 1
+    }
+}
