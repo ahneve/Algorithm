@@ -1,0 +1,6 @@
+import Foundation
+
+func solution(_ n:Int) -> [Int] {
+    var resultArray = Array<Int>(1...n)
+    return resultArray.filter{$0%2 == 1}
+}
