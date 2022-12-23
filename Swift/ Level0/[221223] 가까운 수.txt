@@ -1,0 +1,8 @@
+import Foundation
+
+func solution(_ array:[Int], _ n:Int) -> Int {
+    
+    var num = array.map{abs($0-n)}.sorted(by: <)[0]
+    
+    return array.filter{abs($0-n) == num}.sorted(by: <)[0]
+}
