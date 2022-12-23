@@ -1,0 +1,16 @@
+import Foundation
+
+func solution(_ my_string:String) -> Int {
+    var num = my_string.split(separator: " ").filter{Int($0) != nil}.map{Int($0)!}
+    var oper = my_string.map{String($0)}.filter{Int($0) == nil && String($0) != " "}
+    var result : Int = num[0]
+
+    for i in 0...oper.count-1{
+        if oper[i] == "+" {
+            result = result + num[i+1]
+        } else if oper[i] == "-" {
+            result = result - num[i+1]
+        }
+    }
+    return result
+}
