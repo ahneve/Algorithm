@@ -1,0 +1,11 @@
+import Foundation
+
+func solution(_ num:Int, _ k:Int) -> Int {
+    var result = String(num).map{String($0)}.firstIndex(of: String(k)) ?? -1
+    
+    if(result != -1) {
+        return result+1
+    } else {
+        return result
+    }
+}
