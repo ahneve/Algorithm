@@ -1,0 +1,7 @@
+import Foundation
+
+func solution(_ my_string:String) -> String {
+    var vowel = ["a", "e", "i", "o", "u"]
+   
+    return my_string.map{String($0)}.filter{!vowel.contains($0)}.joined()
+}
