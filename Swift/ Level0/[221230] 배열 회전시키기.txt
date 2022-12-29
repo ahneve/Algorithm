@@ -1,0 +1,34 @@
+import Foundation
+
+func solution(_ numbers:[Int], _ direction:String) -> [Int] {
+    var resultArray : [Int] = []
+    if(direction == "right"){
+        resultArray.append(numbers[numbers.count-1])
+        for i in 0...numbers.count-2 {
+            resultArray.append(numbers[i])
+        }
+    } else {
+        for i in 1...numbers.count-1 {
+            resultArray.append(numbers[i])
+        }
+        resultArray.append(numbers[0])
+    }
+    return resultArray
+}
+
+//다른 풀이
+import Foundation
+
+func solution(_ numbers:[Int], _ direction:String) -> [Int] {
+    var resultArray = numbers
+    
+    if(direction == "right") {
+        resultArray.insert(numbers.last!, at:0)
+        resultArray.removeLast()
+    } else {
+        resultArray.append(numbers.first!)
+        resultArray.removeFirst()
+    }
+    
+    return resultArray
+}
