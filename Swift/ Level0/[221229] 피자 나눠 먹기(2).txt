@@ -1,0 +1,7 @@
+import Foundation
+
+func solution(_ n:Int) -> Int {
+    var resultArray = Array<Int>(1...n*6)
+    
+    return resultArray.filter{$0%6==0 && $0%n==0}[0]/6
+}
