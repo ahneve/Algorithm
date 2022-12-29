@@ -1,0 +1,13 @@
+import Foundation
+
+func solution(_ my_string:String) -> String {
+    var resultArray : [String] = []
+    var stringArray = my_string.map{String($0)}
+    
+    for i in stringArray {
+        if(!resultArray.contains(i)) {
+            resultArray.append(i)
+        }
+    }
+    return resultArray.joined()
+}
