@@ -1,0 +1,9 @@
+import Foundation
+
+func solution(_ my_string:String) -> String {
+    //메모
+    //Int(UnicodeScalar(ch)!.value) 
+    //String(UnicodeScalar(65)!)
+
+    return my_string.map{$0.isUppercase ? $0.lowercased() : $0.uppercased()}.joined()
+}
