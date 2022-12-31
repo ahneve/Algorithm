@@ -1,0 +1,7 @@
+import Foundation
+
+func solution(_ order:Int) -> Int {
+    var num = ["3", "6", "9"]
+    
+    return String(order).filter{num.contains(String($0))}.count
+}
