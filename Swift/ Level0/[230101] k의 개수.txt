@@ -1,0 +1,14 @@
+import Foundation
+
+func solution(_ i:Int, _ j:Int, _ k:Int) -> Int {
+    var resultArray = Array<Int>(i...j)
+    var resultString = resultArray.map{String($0)}.joined()
+    var count : Int = 0
+    
+    for i in resultString {
+        if (String(i) == String(k)){
+            count = count+1
+        }
+    }
+    return count
+}
