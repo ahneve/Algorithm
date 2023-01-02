@@ -1,0 +1,12 @@
+import Foundation
+
+func solution(_ s:String) -> String {
+    var resultArray : [String] = []
+
+    for i in s {
+        if(s.firstIndex(of: i) == s.lastIndex(of: i)){
+            resultArray.append(String(i))
+        } 
+    }
+    return resultArray.sorted().joined()
+}
