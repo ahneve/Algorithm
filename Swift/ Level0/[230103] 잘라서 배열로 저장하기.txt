@@ -1,0 +1,27 @@
+import Foundation
+
+func solution(_ my_str:String, _ n:Int) -> [String] {
+    var resultArray : [String] = []
+    var startNum : Int = 0
+    var endNum : Int = n
+    
+    var forNum = Int(ceil(Double(my_str.length)/Double(n)))
+    
+    for i in 1...forNum{
+        var startIdx = my_str.index(my_str.startIndex, offsetBy: startNum)
+        var endIdx = my_str.index(my_str.startIndex, offsetBy: endNum)
+        
+        var appendStr = my_str[startIdx ..< endIdx]
+        resultArray.append(String(appendStr))
+        
+        if(i == forNum-1) {
+            startNum += n
+            endNum = my_str.length
+        } else {
+            startNum += n
+            endNum += n
+        }     
+    }
+    
+    return resultArray
+}
