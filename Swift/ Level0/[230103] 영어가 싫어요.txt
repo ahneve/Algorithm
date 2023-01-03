@@ -1,0 +1,19 @@
+import Foundation
+
+func solution(_ numbers:String) -> Int64 {
+
+    var resultString = numbers
+    
+    resultString = resultString.replacingOccurrences(of: "zero", with: "0")
+    resultString = resultString.replacingOccurrences(of: "one", with: "1")
+    resultString = resultString.replacingOccurrences(of: "two", with: "2")
+    resultString = resultString.replacingOccurrences(of: "three", with: "3")
+    resultString = resultString.replacingOccurrences(of: "four", with: "4")
+    resultString = resultString.replacingOccurrences(of: "five", with: "5")
+    resultString = resultString.replacingOccurrences(of: "six", with: "6")
+    resultString = resultString.replacingOccurrences(of: "seven", with: "7")
+    resultString = resultString.replacingOccurrences(of: "eight", with: "8")
+    resultString = resultString.replacingOccurrences(of: "nine", with: "9")
+
+    return Int64(resultString) ?? 0
+}
