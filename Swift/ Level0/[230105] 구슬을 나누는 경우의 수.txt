@@ -1,0 +1,14 @@
+import Foundation
+
+func solution(_ balls:Int, _ share:Int) -> Int {
+    guard balls != share else { return 1 }
+    
+    var ballArray = Array<Int>(1...balls)
+    var shareArray = Array<Int>(1...share)
+    var bminussArray = Array<Int>(1...balls-share)
+    
+    var u = ballArray.reduce(1.0){Double($0) * Double($1)}
+    var d = shareArray.reduce(1.0){Double($0) * Double($1)} * Double(bminussArray.reduce(1.0){Double($0) * Double($1)})
+    
+    return Int(round(u/d))
+}
