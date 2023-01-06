@@ -1,0 +1,19 @@
+import Foundation
+
+func solution(_ A:String, _ B:String) -> Int {
+    var resultString = A.map{String($0)}
+    var result : Int = -1
+    
+    for i in 0...resultString.count-1 {
+        if (resultString.joined() == B) {
+            result = i
+            resultString.insert(resultString.last!, at:0)
+            resultString.removeLast()  
+        } else {
+            resultString.insert(resultString.last!, at:0)
+            resultString.removeLast()  
+        }
+        print(i, resultString)
+    }
+    return result
+}
