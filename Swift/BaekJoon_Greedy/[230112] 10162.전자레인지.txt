@@ -1,0 +1,13 @@
+import Foundation
+
+var input = Int(readLine()!)!
+var abc : [Int] = [300,60,10]
+
+if(input%10 == 0) {
+    for i in abc {
+        print(input/i)
+        input -= (input/i)*i
+        }
+} else {
+    print(-1)
+}
