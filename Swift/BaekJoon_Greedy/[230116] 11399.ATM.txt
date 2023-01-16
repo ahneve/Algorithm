@@ -1,0 +1,16 @@
+import Foundation
+
+var input_1 = Int(readLine()!)!
+var input_2 = readLine()!.split(separator: " ").map {Int($0)!}
+
+print(solution(input: input_2.sorted(by: <)))
+
+func solution(input : [Int]) -> Int{
+    var result : Int = 0
+    var temp : Int = 0
+    for i in input {
+        temp += i
+        result += temp
+    }
+    return result
+}
