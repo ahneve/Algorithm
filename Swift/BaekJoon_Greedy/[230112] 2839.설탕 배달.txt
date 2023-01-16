@@ -1,0 +1,31 @@
+import Foundation
+
+var input = Int(readLine()!)!
+
+print(solution(input: input))
+
+func solution(input : Int) -> Int{
+    
+    var result : Int = 0
+    var input = input
+    
+    //5의 배수일 때
+    if (input % 5 == 0){
+        return input/5
+    }
+    
+    //5의 배수로 나누어 질 때 까지 3빼기
+    while(input>=0){
+        input -= 3
+        result += 1
+        if(input%5 == 0){
+            return result + input/5
+        }
+    }
+    if(input<0) {
+        return -1
+    }
+    return result
+}
+
+
