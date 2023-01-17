@@ -1,0 +1,58 @@
+import Foundation
+
+
+var input = Int(readLine()!)!
+var weight : [Int] = []
+
+for _ in 1...input{
+    var nums = Int(readLine()!)!
+    weight.append(nums)
+}
+
+print(solution(input: weight))
+
+func solution(input : [Int]) -> Int{
+    var result : [Int] = []
+
+    //들 수 있는 중량이 가장 큰 로프
+    result.append(input.max()!)
+        
+    //병렬로 연결하는 경우 중 가장 큰 경우
+    var inputLength = input.count
+    for i in input.sorted(by: <){
+        result.append(i*inputLength)
+        inputLength -= 1
+    }
+    return result.max()!
+}
+    
++) 추가로 시간초과 떴던 코드😅
+당연함 2중 for 문(고차함수) 썼우니까,,^ㅠ^
+
+import Foundation
+
+var input = Int(readLine()!)!
+var weight : [Int] = []
+
+for _ in 1...input{
+    var nums = Int(readLine()!)!
+    weight.append(nums)
+}
+
+print(solution(input: weight))
+
+func solution(input : [Int]) -> Int{
+    var result : [Int] = []
+
+    //들 수 있는 중량이 가장 큰 로프
+    result.append(input.max()!)
+    
+    //병렬로 연결하는 경우 중 가장 큰 경우
+    var temp : [Int] = []
+    for i in input{
+        temp.append(input.filter{$0 >= i}.count * i)
+    }
+    result.append(temp.max()!)
+    
+    return result.max()!
+}
