@@ -1,0 +1,31 @@
+import Foundation
+//도시의 개수
+var input = Int(readLine()!)!
+//도로의 길이
+var length = readLine()!.split(separator: " ").map {Int($0)!}
+//주유소의 리터당 가격
+var oil = readLine()!.split(separator: " ").map {Int($0)!}
+
+print(solution(input: input, length: length, oil: oil))
+
+func solution(input : Int, length : [Int], oil : [Int]) -> Int{
+    var result : Int = 0
+    var oil = oil
+    
+    //맨 마지막 주유소는 이용하지 않음
+    oil.removeLast()
+    //총 도로의 길이
+    var totalLength = length.reduce(0){$0+$1}
+
+    for i in 0...input-2{
+        if(i < input-2){
+            if(oil[i] <= oil[i+1]) {
+                oil[i+1] = oil[i]
+            }
+        }
+        result += oil[i]*length[i]
+    }
+    
+    return result
+}
+ 
