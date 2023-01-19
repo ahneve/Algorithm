@@ -1,0 +1,19 @@
+import Foundation
+
+var input = Int(readLine()!)!
+print(solution(input: input))
+
+func solution(input : Int) -> Int{
+    var input = input
+    var result : Int = 0
+    var temp : Int = 1
+    
+    while input >= temp {
+        input -= temp
+        temp += 1
+        result += 1
+    }
+    
+    return result
+}
+    
