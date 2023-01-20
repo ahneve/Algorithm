@@ -1,0 +1,19 @@
+import Foundation
+
+var input = Array(readLine()!).map{Int(String($0))!}
+
+print(solution(input: input.sorted(by: >)))
+
+func solution(input : [Int]) -> String{
+    var result : String = "-1"
+    let temp = input.reduce(0){Int($0)+Int($1)}
+    
+    if(temp % 3 == 0 && input.last! == 0){
+        result = input.map{String($0)}.joined()
+    } else {
+        result = "-1"
+    }
+    
+    return result
+}
+ 
