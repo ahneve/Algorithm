@@ -1,0 +1,28 @@
+import Foundation
+//테스트 케이스 수
+var input = Int(readLine()!) ?? 0
+var day : [Int] = []
+var stock : [[Int]] = []
+
+for _ in 0...input-1 {
+    day.append(Int(readLine()!)!)
+    stock.append(readLine()!.split(separator: " ").map {Int($0)!})
+}
+
+for i in 0...input-1 {
+    print(solution(stock: stock[i]))
+}
+
+func solution(stock : [Int]) -> Int{
+    var result : Int = 0
+    var currentMax : Int = 0
+    
+    for i in stock.reversed() {
+        if i >= currentMax{
+            currentMax = i
+        } else {
+            result += currentMax-i
+        }
+    }
+    return result
+}
