@@ -1,0 +1,21 @@
+import Foundation
+//테스트 케이스 수
+var input =  Int(readLine()!)!
+var inputArr : [Int] = []
+
+for _ in 1...input {
+    inputArr.append(Int(readLine()!)!)
+}
+
+print(solution(input: inputArr.sorted(by: <)))
+
+func solution(input : [Int]) -> Int{
+    var result : Int = 0
+    var rank = Array<Int>(1...input.count)
+    
+    for i in 0...rank.count-1 {
+        result += abs(rank[i]-input[i])
+    }
+    
+    return result
+}
