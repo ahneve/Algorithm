@@ -1,14 +1,100 @@
 import Foundation
 
-var input = 1000-Int(readLine()!)!
-var JPY : [Int] = [500,100,50,10,5,1]
-var result : Int = 0
+let input = readLine()!.split(separator: " ").map{Int(String($0))!}
+let (n, m) = (input[0], input[1])
 
-for i in JPY {
-    if (input >= i){
-        result = result+(input/i)
-        input = input-(input/i)*i
+var graph = [[Int]]()
+for _ in 0..<n {
+    graph.append(readLine()!.map{Int(String($0))! })
+}
+
+func dfs(_ x: Int, _ y: Int) -> Bool {
+    // 범위 벗어나면 종료
+    if !isInRange(x, y) {
+        return false
+    }
+    
+    if graph[x][y] == 0 { // 방문하지 않은 노드
+        graph[x][y] = 1 // 방문처리
+        
+        // 상하좌우 탐색, 재귀적 호출
+        dfs(x, y+1)
+        dfs(x, y-1)
+        dfs(x-1, y)
+        dfs(x+1, y)
+        
+        return true // 주변이 다 막혀있다면 true 반환하고 종료
+    }
+    
+    return false
+}
+
+func isInRange(_ x: Int, _ y: Int) -> Bool {
+    return (0..<n ~= x) && (0..<m ~= y)
+}
+
+var result = 0
+
+for i in 0..<n {
+    for j in 0..<m {
+        if dfs(i, j){
+            result += 1
+        }
     }
 }
 
 print(result)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+//테스트 케이스 수
+var input =  Int(readLine()!)!
+var inputArr : [Int] = []
+
+for _ in 1...input {
+    inputArr.append(Int(readLine()!)!)
+}
+
+print(solution(input: inputArr.sorted(by: <)))
+
+func solution(input : [Int]) -> Int{
+    var result : Int = input[0]+input[1]
+    var tempArr = [input[0], input[1], result]
+    var resultArr = input[2...input.count-1]
+    
+    print("tempArr", tempArr)
+    print("resultArr", resultArr)
+    
+    while resultArr.count != 2 {
+        let r0 = resultArr[0]
+        let r1 = resultArr[1]
+        if(result + r0 > r0 + r1 ){
+            tempArr.append(r0)
+            tempArr.append(r1)
+            tempArr.append(r0+r1)
+            result += r0+r1
+            resultArr.removeFirst(2)
+        } else if(result + r0 < r0 + r1){
+            tempArr.append(r0)
+            tempArr.append(result+r0)
+            result += result+r0
+            resultArr.removeFirst(1)
+        }
+    }
+    return result
+}
+*/
