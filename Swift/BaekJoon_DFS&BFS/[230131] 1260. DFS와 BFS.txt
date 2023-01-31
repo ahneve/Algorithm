@@ -1,0 +1,53 @@
+import Foundation
+
+let row = readLine()!.split(separator: " ").map {Int(String($0))!}
+
+let N = row[0] // 정점의 개수
+let M = row[1] // 간선의 개수
+let V = row[2] // 탐색을 시작한 정점의 번호
+
+var graph : [[Int]] = Array(repeating: [], count: N+1)
+var check = Array(repeating: false, count: N+1)
+var result = ""
+
+for _ in 0..<M {
+    let relation = readLine()!.split(separator: " ").map {Int(String($0))!}
+    let a = relation[0]
+    let b = relation[1]
+    graph[a].append(b)
+    graph[b].append(a)
+    graph[a].sort()
+    graph[b].sort()
+}
+
+func dfs(_ current:Int) {
+    check[current] = true // 방문처리
+    result += "\(current) "
+    for i in graph[current] {
+        if !check[i] { // 방문하지 않았다면
+            dfs(i) // dfs()를 재귀적으로 호출
+        }
+    }
+}
+
+func bfs(_ current:Int) {
+    var needVisitQueue : [Int] = [current]  // 방문해야 하는 노드 저장 (=해당 노드의 형제 노드)
+    var visitedQueue = [Int]() // 방문한 노드
+    
+    while !needVisitQueue.isEmpty { // 방문해야 하는 노드가 없을 때 까지
+        let node = needVisitQueue.removeFirst() // 첫 노드 삭제 (FIFO)
+        
+        if !visitedQueue.contains(node) {
+            visitedQueue.append(node)
+            result += "\(node) "
+            needVisitQueue.append(contentsOf: graph[node].sorted())
+        }
+        
+    }
+}
+
+dfs(V)
+print(result)
+result = ""
+bfs(V)
+print(result)
