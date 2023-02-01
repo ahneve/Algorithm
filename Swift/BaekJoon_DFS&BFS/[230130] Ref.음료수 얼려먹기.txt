@@ -15,7 +15,7 @@ func dfs(_ x: Int, _ y: Int) -> Bool {
     }
     
     if graph[x][y] == 0 { // 방문하지 않은 노드
-        graph[x][y] = 1 // 방문처리
+        graph[x][y] = 1 // 방문처_
         
         // 상하좌우 탐색, 재귀적 호출
         dfs(x, y+1)
