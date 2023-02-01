@@ -1,0 +1,32 @@
+import Foundation
+
+let N = Int(readLine()!)!
+let M = Int(readLine()!)!
+
+var graph : [[Int]] = Array(repeating: [], count: N+1)
+var checkVisited = Array(repeating: false, count: N+1)
+var result : Int = -1
+
+for _ in 0..<M{
+    let relation = readLine()!.split(separator: " ").map {Int(String($0))!}
+    let a = relation[0]
+    let b = relation[1]
+    graph[a].append(b)
+    graph[b].append(a)
+    graph[a].sort()
+    graph[b].sort()
+}
+
+func dfs(_ current:Int) -> Bool {
+    checkVisited[current] = true // 방문처리
+    result += 1
+    for i in graph[current]{
+        if(!checkVisited[i]) {
+            dfs(i)
+        }
+    }
+    return false
+}
+
+dfs(1)
+print(result)
