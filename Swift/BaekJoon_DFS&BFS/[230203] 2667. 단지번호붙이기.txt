@@ -1,0 +1,53 @@
+import Foundation
+
+let input = Int(readLine()!)!
+
+var graph = [[Int]]()
+var result = 0
+var resultArray = [Int]()
+var temp = 0
+
+for _ in 0..<input {
+    graph.append(readLine()!.map{Int(String($0))! })
+}
+
+func dfs(_ x:Int, _ y:Int) -> Bool {
+    
+    if !isInRange(x, y) {
+        return false
+    }
+    
+    if graph[x][y] == 1 {
+        graph[x][y] = 2
+        temp += 1
+
+        dfs(x, y+1)
+        dfs(x, y-1)
+        dfs(x-1, y)
+        dfs(x+1, y)
+        
+        return true
+    }
+    
+    return false
+}
+
+func isInRange(_ x:Int, _ y:Int) -> Bool {
+    return (0..<input ~= x) && (0..<input ~= y)
+}
+
+
+for i in 0..<input {
+    for j in 0..<input{
+        if dfs(i,j) {
+            result += 1
+            resultArray.append(temp)
+            temp = 0
+        }
+    }
+}
+
+print(result)
+for i in resultArray.sorted(by: <) {
+    print(i)
+}
