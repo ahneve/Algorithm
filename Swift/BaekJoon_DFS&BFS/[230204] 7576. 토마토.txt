@@ -1,0 +1,73 @@
+import Foundation
+
+let input = readLine()!.split(separator: " ").map{Int(String($0))!}
+let M = input[0]
+let N = input[1]
+
+var graph = [[Int]]()
+var checkDay = Array(repeating: Array(repeating: 0, count: M+1), count: N+1)
+
+for _ in 0..<N {
+    graph.append(readLine()!.split(separator: " ").map{Int(String($0))!})
+}
+
+let dx = [-1, 1, 0, 0]
+let dy = [0, 0, 1, -1]
+
+
+var notRipened = false
+var day = [0, 0] // var day = [Int]() 로 하면 런타임 오류
+var needVisitedQueue = [[Int]]()
+var index = 0
+
+for i in 0..<N {
+    for j in 0..<M {
+        if graph[i][j] == 1 {
+            needVisitedQueue.append([i,j]) // 첫 번째 노드
+        }
+    }
+}
+
+func bfs() {
+    while index < needVisitedQueue.count {
+        
+        //let node = needVisitedQueue.removeFirst() // removeFirst() 쓰면 시간 초과
+        
+        let node = needVisitedQueue[index]
+        index += 1
+        
+        let x = node[0]
+        let y = node[1]
+
+        for i in 0..<4 {
+            let nx = x + dx[i]
+            let ny = y + dy[i]
+            
+            if nx >= 0 && nx < N && ny >= 0 && ny < M {
+                if graph[nx][ny] == 0 {
+                    graph[nx][ny] = 1
+                    checkDay[nx][ny] = checkDay[x][y] + 1
+                    needVisitedQueue.append([nx,ny])
+                    day = [nx, ny]
+                    
+                }
+            }
+        }
+    }
+}
+
+bfs()
+
+for i in 0..<N{
+    for j in 0..<M{
+        if(graph[i][j] == 0){
+            notRipened = true
+        }
+    }
+}
+
+if notRipened {
+    print(-1)
+} else {
+    print(checkDay[day[0]][day[1]])
+}
