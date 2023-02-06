@@ -1,0 +1,57 @@
+import Foundation
+
+let T = Int(readLine()!)! // 테스트 케이스의 개수
+var N = Array(repeating: 0, count: T) // 순열의 크기
+var graphArray = [[[Int]]]() // 순열을 저장할 배열
+var checkVisited = [Bool]() // 방문을 저장할 배열
+
+var temp = [[Int]]()
+var result = 0
+
+for i in 0..<T {
+    N[i] = Int(readLine()!)! //8, 10
+    let tempArray = readLine()!.split(separator: " ").map{Int(String($0))!}
+    temp.append(tempArray)
+    temp[i].insert(0, at: 0)
+    
+    graphArray.append([])
+    for _ in 0...N[i]{
+        graphArray[i].append([])
+    }
+
+    
+}
+
+for i in 0..<T{
+    for j in 0...N[i]{
+        graphArray[i][j].append(temp[i][j])
+    }
+}
+
+for i in 0..<graphArray.count {
+    result = 0
+    checkVisited = Array(repeating: false, count: N[i]+1 ) // 방문 저장 배열
+    for j in 1..<N[i]+1 {
+        if dfs(j, graphArray[i]) {
+            result += 1
+        }
+    }
+    print(result)
+}
+    
+func dfs(_ current: Int, _ graph:[[Int]]) -> Bool{
+    checkVisited[current] = true
+    for i in graph[current] {
+        if(!checkVisited[i]) {
+            dfs(i, graph)
+            return true
+        }
+        if(current == i){
+            return true
+        }
+        return false
+    }
+    return false
+}
+    
+
