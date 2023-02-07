@@ -1,0 +1,53 @@
+import Foundation
+
+let firstLine = readLine()!.split(separator: " ").map{Int(String($0))!}
+let row = firstLine[0]
+let column = firstLine[1]
+
+var graph = [[Int]]()
+var checkDistance = Array(repeating: Array(repeating: 0, count: column), count: row)
+
+let dy = [-1, 1, 0, 0] // 상하
+let dx = [0, 0, 1, -1] // 좌우
+
+for _ in 0..<row {
+    let input = Array(readLine()!).map{Int(String($0))!}
+    graph.append(input)
+}
+
+
+func bfs() {
+    
+    var visitedQueue = Array(repeating: Array(repeating: false, count: column), count: row)
+    var needVisitedQueue : [[Int]] = [[0,0]]
+    
+    checkDistance[0][0] = 1
+    visitedQueue[0][0] = true
+    
+    while !needVisitedQueue.isEmpty {
+        
+        let node = needVisitedQueue.removeFirst()
+        
+        let x = node[0]
+        let y = node[1]
+        
+        for i in 0..<4 {
+            let nx = x + dx[i]
+            let ny = y + dy[i]
+            
+            if nx >= 0 && nx < row && ny >= 0 && ny < column {
+                if !visitedQueue[nx][ny] && graph[nx][ny] == 1 {
+                    visitedQueue[nx][ny] = true
+                    checkDistance[nx][ny] = checkDistance[x][y] + 1
+                    
+                    needVisitedQueue.append([nx, ny])
+                }
+            }
+        }
+    }
+}
+
+bfs()
+print(checkDistance[row-1][column-1])
+
+
