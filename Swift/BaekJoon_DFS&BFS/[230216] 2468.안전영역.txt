@@ -1,0 +1,62 @@
+import Foundation
+
+let n = Int(readLine()!)!
+var input = [[Int]]()
+var graph = [[Int]]()
+var min : Int = 100 // 최저 고도
+var max : Int = 0 // 최대 고도
+
+for _ in 1...n {
+    let temp = readLine()!.split(separator: " ").map{Int(String($0))!}
+    input.append(temp)
+    graph.append(Array(repeating: 0, count: n))
+                 
+    if temp.max()! > max {
+        max = temp.max()!
+    }
+    
+    if temp.min()! < min {
+        min = temp.min()!
+    }
+}
+
+func dfs(_ height : Int, _ x: Int, _ y: Int) -> Bool {
+ 
+    // 범위 벗어나면 종료
+    if !isInRange(x, y) {
+        return false
+    }
+    
+    if graph[x][y] == 0 && input[x][y]>=height {
+        graph[x][y] = 1 // 방문처리
+        
+        // 상하좌우 탐색, 재귀적 호출
+        dfs(height, x, y+1)
+        dfs(height, x, y-1)
+        dfs(height, x-1, y)
+        dfs(height, x+1, y)
+        
+        return true // 주변이 다 막혀있다면 true 반환하고 종료
+    }
+    
+    return false
+}
+
+func isInRange(_ x: Int, _ y: Int) -> Bool {
+    return (0..<n ~= x) && (0..<n ~= y)
+}
+
+var result = Array(repeating: 0, count: max)
+
+for i in min...max {
+    graph = Array(repeating: Array(repeating: 0, count: n), count: n)
+    for j in 0..<n {
+        for k in 0..<n {
+            if dfs(i, j, k){
+                result[i-1] += 1
+            }
+        }
+    }
+}
+
+print(result.max()!)
