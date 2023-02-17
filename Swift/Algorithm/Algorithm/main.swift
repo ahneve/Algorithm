@@ -1,100 +1,28 @@
 import Foundation
 
 let input = readLine()!.split(separator: " ").map{Int(String($0))!}
-let (n, m) = (input[0], input[1])
 
-var graph = [[Int]]()
-for _ in 0..<n {
-    graph.append(readLine()!.map{Int(String($0))! })
-}
+let N = input[0] // 1부터 N까지의 자연수 중
+let M = input[1] // 중복 없이 M개를 고른 수열
 
-func dfs(_ x: Int, _ y: Int) -> Bool {
-    // 범위 벗어나면 종료
-    if !isInRange(x, y) {
-        return false
-    }
-    
-    if graph[x][y] == 0 { // 방문하지 않은 노드
-        graph[x][y] = 1 // 방문처리
-        
-        // 상하좌우 탐색, 재귀적 호출
-        dfs(x, y+1)
-        dfs(x, y-1)
-        dfs(x-1, y)
-        dfs(x+1, y)
-        
-        return true // 주변이 다 막혀있다면 true 반환하고 종료
-    }
-    
-    return false
-}
+//var visitedArray = Array(repeating: false, count: N+1)
+var count : Int = 0
+var stack = [Int]()
 
-func isInRange(_ x: Int, _ y: Int) -> Bool {
-    return (0..<n ~= x) && (0..<m ~= y)
-}
-
-var result = 0
-
-for i in 0..<n {
-    for j in 0..<m {
-        if dfs(i, j){
-            result += 1
+func backTracking(count: Int) {
+    if count == M {
+        print(stack.map{String($0)}.joined(separator: " "))
+    } else {
+        for i in 1...N {
+            //if !visitedArray[i]{
+                //visitedArray[i] = true
+                stack.append(i)
+                backTracking(count: count+1)
+                //visitedArray[i] = false
+                stack.removeLast()
+            //}
         }
     }
 }
 
-print(result)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-//테스트 케이스 수
-var input =  Int(readLine()!)!
-var inputArr : [Int] = []
-
-for _ in 1...input {
-    inputArr.append(Int(readLine()!)!)
-}
-
-print(solution(input: inputArr.sorted(by: <)))
-
-func solution(input : [Int]) -> Int{
-    var result : Int = input[0]+input[1]
-    var tempArr = [input[0], input[1], result]
-    var resultArr = input[2...input.count-1]
-    
-    print("tempArr", tempArr)
-    print("resultArr", resultArr)
-    
-    while resultArr.count != 2 {
-        let r0 = resultArr[0]
-        let r1 = resultArr[1]
-        if(result + r0 > r0 + r1 ){
-            tempArr.append(r0)
-            tempArr.append(r1)
-            tempArr.append(r0+r1)
-            result += r0+r1
-            resultArr.removeFirst(2)
-        } else if(result + r0 < r0 + r1){
-            tempArr.append(r0)
-            tempArr.append(result+r0)
-            result += result+r0
-            resultArr.removeFirst(1)
-        }
-    }
-    return result
-}
-*/
+backTracking(count: count)
